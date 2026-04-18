@@ -3,7 +3,9 @@
 <body>
 <script>
 (async () => {
-    await fetch('https://bsc.requestcatcher.com?data=test');
+    await fetch('https://bsc.requestcatcher.com?data=test', {
+        mode: 'no-cors'  // 응답은 못 읽지만 요청은 전송됨
+    });
 })();
 </script>
 </body>
